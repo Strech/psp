@@ -2,12 +2,16 @@
 
 Command line utility for project and plugins spec running.
 
+:warning: The main difference from original repo – project independent modifications
+and realization of truly author ideas :warning:
+
 ## Features
 
 1. Fair parallelism: all specs running in real processes
 2. KISS: all you should know is what you want to test
 3. PP: pretty console output
-4. This tool is made with love :heart:
+4. Shit free :poop:
+5. This tool is made with love :heart:
 
 ## Installation
 
