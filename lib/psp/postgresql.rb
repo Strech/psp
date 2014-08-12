@@ -13,7 +13,7 @@ module Psp
       MutexPool[:postgresql].synchronize do
         return @pg_version if defined?(@pg_version)
 
-        verbose { puts "Gathering #{green 'PostgreSQL'} version" }
+        debug { puts "Gathering #{green 'PostgreSQL'} version" }
         @pg_version = %x{$(which psql) --version}.match(/\d+\.\d+/)[0].to_f
       end
     end

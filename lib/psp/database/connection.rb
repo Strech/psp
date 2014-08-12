@@ -12,7 +12,7 @@ module Psp
       MAX_TIMEOUT_RETRIES = 5
 
       def establish!
-        verbose { puts "Connecting to #{green database_name} database" }
+        debug { puts "Connecting to #{green database_name} database" }
 
         ActiveRecord::Base.establish_connection(Configuration.system)
       end

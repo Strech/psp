@@ -26,7 +26,7 @@ module Psp
       MutexPool[:configurations].synchronize do
         return if defined?(@configurations)
 
-        verbose { puts "Loading #{green 'database.yml'} configuration" }
+        debug { puts "Loading #{green 'database.yml'} configuration" }
 
         erb = ERB.new(IO.read File.join(ROOT_PATH, 'config', 'database.yml')).result
         @configurations = YAML.load(erb).freeze

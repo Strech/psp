@@ -55,6 +55,7 @@ From root of your project
     $   -j, --jobs=<concurrency>         Set runner concurrency
     $       --dry-run                    Check out the allocations
     $   -v, --verbose                    Turn on verbosity
+    $   -d, --debug                      Turn on debug verbosity
     $       --version                    Display the version
     $   -h, --help                       You are looking at it
 

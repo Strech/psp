@@ -16,7 +16,7 @@ module Psp
       private
 
       def stderr_to_stdout
-        "2>&1#{' 1>/dev/null' unless Output.verbose?}"
+        "2>&1#{' 1>/dev/null' unless Output.verbose? || Output.debug?}"
       end
     end # class AbstractRunner
   end # class Runner

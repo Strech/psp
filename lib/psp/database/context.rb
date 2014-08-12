@@ -36,7 +36,7 @@ module Psp
 
       private
       def create_database
-        verbose { puts yellow "SQL => CREATE DATABASE #{@database}" }
+        debug { puts yellow "SQL => CREATE DATABASE #{@database}" }
 
         Connection.with_connection do
           Connection.current.execute <<-SQL
@@ -51,7 +51,7 @@ module Psp
       end
 
       def drop_database
-        verbose { puts yellow "SQL => DROP DATABASE #{@database}" }
+        debug { puts yellow "SQL => DROP DATABASE #{@database}" }
 
         Connection.with_connection do
           Connection.current.execute <<-SQL

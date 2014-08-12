@@ -60,6 +60,7 @@ module Psp
     end
 
     private
+
     def print_pr_runners_allocation
       empty = @pr_runners_count.zero? ? [Ascii.blue('0')]
         : print_empty_runners_allocation(@pr_runners_count, @pr_runners_satiety)

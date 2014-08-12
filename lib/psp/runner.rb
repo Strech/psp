@@ -5,7 +5,7 @@ require 'active_support/core_ext/array'
 module Psp
   class Runner
     def initialize(collection, options = Hash.new)
-      Output.setup(verbose: options.delete(:verbose))
+      setup_output(options)
 
       @dry_run = options.delete(:dry_run)
 
@@ -35,6 +35,10 @@ module Psp
 
     def dry_run?
       !!@dry_run
+    end
+
+    def setup_output(options)
+      Output.setup(verbose: options.delete(:verbose), debug: options.delete(:debug))
     end
 
     def in_database_context(&block)
