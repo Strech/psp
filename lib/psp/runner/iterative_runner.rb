@@ -3,18 +3,13 @@ require 'active_support/core_ext/object/try'
 
 module Psp
   class Runner
-    class IterativeRunner < BaseRunner
+    class IterativeRunner < AbstractRunner
       def run(context)
         succeed = @collection.collect do |element|
-          puts "Run #{green extract_name(element)}"
+          say_running(element)
 
-          result = !!system("#{context.env} bundle exec rspec #{rspec_options} #{element} #{stderr_to_stdout}")
-
-          if result
-            puts "Finished #{blue extract_name(element)}"
-          else
-            puts red("Finished #{extract_name(element)} with error")
-          end
+          result = !!system("#{context.env} bundle exec rspec #{element} #{stderr_to_stdout}")
+          result ? say_succeed_finish(element) : say_failed_finish(element)
 
           result
         end
@@ -24,8 +19,20 @@ module Psp
 
       private
 
+      def say_running(element)
+        puts "Run #{green extract_name(element)}"
+      end
+
+      def say_succeed_finish(element)
+        puts "Finished #{blue extract_name(element)}"
+      end
+
+      def say_failed_finish(element)
+        puts "Finished #{red extract_name(element)} with errors"
+      end
+
       def extract_name(element)
-        element.match(/(?<name>[\w\_\-]+)\/spec$/)
+        element.match(/(?<name>[\w\-]+)\/spec$/)
           .try(:[], :name) || File.basename(element, '.rb')
       end
     end # PluginsRunner

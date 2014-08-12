@@ -2,22 +2,29 @@
 
 module Psp
   class Runner
-    class BulkRunner < BaseRunner
+    class BulkRunner < AbstractRunner
       def run(context)
-        puts "Run #{green extract_name}"
+        say_running
 
-        result = !!system("#{context.env} bundle exec rspec #{rspec_options} #{@collection * ' '} #{stderr_to_stdout}")
+        succeed = !!system("#{context.env} bundle exec rspec #{@collection * ' '} #{stderr_to_stdout}")
+        succeed ? say_succeed_finish : say_failed_finish
 
-        if result
-          puts "Finished #{blue extract_name}"
-        else
-          puts red("Finished #{extract_name} with error")
-        end
-
-        result
+        succeed
       end
 
       private
+
+      def say_running
+        puts "Run #{green extract_name}"
+      end
+
+      def say_succeed_finish
+        puts "Finished #{blue extract_name}"
+      end
+
+      def say_failed_finish
+        puts "Finished #{red extract_name} with errors"
+      end
 
       def extract_name
         "files (#{@collection.count})"

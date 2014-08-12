@@ -24,6 +24,7 @@ module Psp
     end
 
     private
+
     def boolean_to_exit_code(boolean)
       boolean ? 0 : 1
     end
@@ -58,10 +59,6 @@ module Psp
 
         parser.on('-v', '--verbose', 'Turn on verbosity') do
           @runner_options[:verbose] = true
-        end
-
-        parser.on('-r', '--profile', 'Show rspec profile summary') do
-          @runner_options[:profile] = true
         end
 
         parser.on_tail('--version', 'Display the version') do
