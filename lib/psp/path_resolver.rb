@@ -16,6 +16,7 @@ module Psp
     end
 
     private
+    
     def resolve_project_paths
       @project_paths.flat_map do |path|
         Dir.glob(File.join(Psp::ROOT_PATH, 'spec'))

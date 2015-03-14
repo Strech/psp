@@ -21,8 +21,9 @@ Gem::Specification.new do |spec|
   # NOTE : Залочили из-за наших проектов
   spec.add_dependency 'activerecord', '>= 3.0'
   spec.add_dependency 'activesupport', '>= 3.0'
-  spec.add_dependency 'parallel', '~> 0.9'
+  spec.add_dependency 'parallel', '>= 0.9'
 
   spec.add_development_dependency 'bundler', '~> 1.6'
   spec.add_development_dependency 'rake'
 end
+

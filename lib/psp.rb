@@ -15,8 +15,9 @@ require 'psp/runner'
 require 'psp/runner/abstract_runner'
 require 'psp/runner/bulk_runner'
 require 'psp/runner/iterative_runner'
-require 'psp/railtie' if defined?(Rails)
 require 'psp/cli'
+require 'psp/cli/options'
+require 'psp/railtie' if defined?(Rails)
 
 module Psp
   ROOT_PATH = if defined?(Rails) && Rails.root.present?
