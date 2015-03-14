@@ -9,12 +9,13 @@ module Psp
     PROJECT_RUNNERS_RATE = 0.13
     PLUGINS_RUNNERS_RATE = 4.9
     DEFAULT_CONCURRENCY = 1
+    DEFAULT_RATE = 1
 
     attr_reader :concurrency
 
     def initialize(collection, options = Hash.new)
-      @concurrency = options.fetch(:concurrency, DEFAULT_CONCURRENCY)
-        .to_i.nonzero? || DEFAULT_CONCURRENCY
+      @concurrency = options.fetch(:concurrency, DEFAULT_CONCURRENCY).to_i.nonzero? || DEFAULT_CONCURRENCY
+      @rate = options.fetch(:rate, DEFAULT_RATE).to_i.nonzero? || DEFAULT_RATE
 
       @project, @plugins = separate(collection)
 
@@ -135,7 +136,7 @@ module Psp
       if @project.empty?
         [0, @concurrency]
       elsif @plugins.empty?
-        [@concurrency, 0] # TODO : Добавить маленькие очереди и сюда!
+        [@project.count * @rate, 0] # TODO : Добавить маленькие очереди и сюда!
       else
         project = (@concurrency * PROJECT_RUNNERS_RATE).ceil
         plugin = (@plugins.count / PLUGINS_RUNNERS_RATE).ceil

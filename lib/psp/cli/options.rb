@@ -50,6 +50,10 @@ module Psp
             @runner_options[:concurrency] = concurrency
           end
 
+          parser.on('-t', '--rate=<number>', Integer, 'Set allocation rate') do |rate|
+            @runner_options[:rate] = rate
+          end
+
           parser.on('--dry-run', 'Check out the allocations') do
             @runner_options[:dry_run] = true
           end
