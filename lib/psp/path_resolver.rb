@@ -10,13 +10,13 @@ module Psp
     end
 
     def expand
-      (resolve_project_paths  + resolve_plugins_paths).map do |directory|
+      (resolve_project_paths + resolve_plugins_paths).map do |directory|
         FileResolver.new(directory)
       end
     end
 
     private
-    
+
     def resolve_project_paths
       @project_paths.flat_map do |path|
         Dir.glob(File.join(Psp::ROOT_PATH, 'spec'))
@@ -42,3 +42,4 @@ module Psp
     end
   end # class PathResolver
 end # module Psp
+

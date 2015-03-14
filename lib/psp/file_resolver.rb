@@ -24,7 +24,7 @@ module Psp
     end
 
     def files
-      @files ||= Dir.glob(File.join(@path, '**', '*_spec.rb')).take(2).map do |full_path|
+      @files ||= Dir.glob(File.join(@path, '**', '*_spec.rb')).map do |full_path|
         relative_path(full_path)
       end
     end
@@ -40,3 +40,4 @@ module Psp
     end
   end # class FileResolver
 end # module Psp
+
