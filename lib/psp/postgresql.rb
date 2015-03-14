@@ -15,7 +15,11 @@ module Psp
 
         debug { puts "Gathering #{green 'PostgreSQL'} version" }
         @pg_version = %x{$(which psql) --version}.match(/\d+\.\d+/)[0].to_f
+
+        debug { puts "Postgresql version is #{green @pg_version}" }
+        @pg_version
       end
     end
   end # module Postgresql
 end # module Psp
+
