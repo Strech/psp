@@ -14,7 +14,7 @@ module Psp
 
     def initialize(collection, options = Hash.new)
       @concurrency = options.fetch(:concurrency, DEFAULT_CONCURRENCY).to_i.nonzero? || DEFAULT_CONCURRENCY
-      @runners_count = options.fetch(:runners_count, DEFAULT_CONCURRENCY).to_i.nonzero? || DEFAULT_CONCURRENCY
+      @runners_count = options.fetch(:runners_count, @concurrency).to_i.nonzero? || @concurrency
 
       @project, @plugins = separate(collection)
 
